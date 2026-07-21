@@ -63,10 +63,10 @@ credentials at all.
 | Command                                      | What it does                                             |
 | ---------------------------------------------- | ---------------------------------------------------------- |
 | `codabench competitions [--search TEXT]`     | List competitions                                        |
-| `codabench show <id|url>`                    | Pages, phases, tasks, files, leaderboard                 |
-| `codabench files <id|url>`                   | List / download the "Files" tab                          |
-| `codabench submit <id|url> -z FILE`          | Upload a submission, optionally wait for the score       |
-| `codabench outputs <id|url>`                 | Download a submission's zip, prediction & scoring output |
+| `codabench show <id\|url>`                    | Pages, phases, tasks, files, leaderboard                 |
+| `codabench files <id\|url>`                   | List / download the "Files" tab                          |
+| `codabench submit <id\|url> -z FILE`          | Upload a submission, optionally wait for the score       |
+| `codabench outputs <id\|url>`                 | Download a submission's zip, prediction & scoring output |
 | `codabench rerun --submission ID --task KEY` | Re-run a submission on another task (robot accounts)     |
 | `codabench create -b bundle.zip`             | Create a competition from a bundle                       |
 
