@@ -19,8 +19,17 @@ codabench outputs 17525                     # fetch the prediction & scoring out
 ## Install
 
 ```bash
-git clone https://github.com/<you>/api-codabench.git
-cd api-codabench
+pip install codabench-client
+```
+
+That puts the `codabench` command on your PATH and makes `import codabench` available.
+Pin it if you want a fixed version: `pip install codabench-client==0.1.0`.
+
+To work on the package itself:
+
+```bash
+git clone https://github.com/moujar/codabench-client.git
+cd codabench-client
 pip install -e .
 ```
 
