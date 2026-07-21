@@ -1,0 +1,23 @@
+# Credentials — never commit these
+.env
+*.env
+
+# Downloads produced by the CLI
+files/
+outputs/
+workdir/
+results.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling / OS
+.pytest_cache/
+.ruff_cache/
+.DS_Store
