@@ -68,16 +68,6 @@ credentials at all.
 | `codabench create -b bundle.zip`             | Create a competition from a bundle                       |
 
 
-| Command                                        | What it does                                             |
-| ------------------------------------------------ | ---------------------------------------------------------- |
-| `codabench competitions [--search TEXT]`       | List competitions                                        |
-| `codabench show &lt;id&#124;url&gt;`           | Pages, phases, tasks, files, leaderboard                 |
-| `codabench files &lt;id&#124;url&gt;`          | List / download the "Files" tab                          |
-| `codabench submit &lt;id&#124;url&gt; -z FILE` | Upload a submission, optionally wait for the score       |
-| `codabench outputs &lt;id&#124;url&gt;`        | Download a submission's zip, prediction & scoring output |
-| `codabench rerun --submission ID --task KEY`   | Re-run a submission on another task (robot accounts)     |
-| `codabench create -b bundle.zip`               | Create a competition from a bundle                       |
-
 Every command takes `--url`, `--username`, `--password`, `--env`, and `--help`.
 
 ### Inspect a competition
