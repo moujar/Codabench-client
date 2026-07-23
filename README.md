@@ -54,9 +54,6 @@ CODABENCH_PASSWORD=your_password
 `CODABENCH_USERNAME` / `CODABENCH_PASSWORD`. Reading a **public** competition needs no
 credentials at all.
 
-> **Accounts are per-instance.** A `www.codabench.org` login does not work on
-> `dev.codabench.org`, and vice versa.
-
 ## Commands
 
 
