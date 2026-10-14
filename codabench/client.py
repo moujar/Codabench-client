@@ -111,7 +111,12 @@ class CodabenchClient:
         """GET a JSON endpoint. Raises :class:`ApiError` on a non-200 reply."""
         resp = self.request("GET", path, timeout=timeout, params=params or None)
         if resp.status_code != 200:
-            raise ApiError(f"GET {path} failed ({resp.status_code}): {resp.text[:300]}",
+            hint = ""
+            if resp.status_code in (401, 403, 404) and not self.authenticated:
+                hint = ("\nhint: no credentials were loaded, so only public data is visible. "
+                        "Unpublished/private competitions need CODABENCH_USERNAME / "
+                        "CODABENCH_PASSWORD (in ./.env, the environment, or --env PATH).")
+            raise ApiError(f"GET {path} failed ({resp.status_code}): {resp.text[:300]}{hint}",
                            resp.status_code, resp.text)
         return resp.json()
 
@@ -419,5 +424,13 @@ class CodabenchClient:
 
 
 def default_env_path() -> str:
-    """``.env`` next to the repository root, the conventional place for credentials."""
+    """``.env`` in the current directory if there is one, else next to the repository root.
+
+    The current directory comes first so a pip-installed CLI (whose package lives
+    in site-packages or another checkout) still finds the credentials of the
+    project you run it from.
+    """
+    cwd_env = os.path.join(os.getcwd(), ".env")
+    if os.path.isfile(cwd_env):
+        return cwd_env
     return os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")

@@ -51,8 +51,9 @@ CODABENCH_PASSWORD=your_password
 ```
 
 `.env` is gitignored. Environment variables win over the file, so CI can just set
-`CODABENCH_USERNAME` / `CODABENCH_PASSWORD`. Reading a **public** competition needs no
-credentials at all.
+`CODABENCH_USERNAME` / `CODABENCH_PASSWORD`. The CLI reads `.env` from the current
+directory (or pass `--env PATH`). Reading a **public** competition needs no
+credentials at all; unpublished competitions you own return 404 unless you are logged in.
 
 ## Commands
 
@@ -60,13 +61,12 @@ credentials at all.
 | Command                                      | What it does                                             |
 | ---------------------------------------------- | ---------------------------------------------------------- |
 | `codabench competitions [--search TEXT]`     | List competitions                                        |
-| `codabench show <id\|url>`                    | Pages, phases, tasks, files, leaderboard                 |
-| `codabench files <id\|url>`                   | List / download the "Files" tab                          |
-| `codabench submit <id\|url> -z FILE`          | Upload a submission, optionally wait for the score       |
-| `codabench outputs <id\|url>`                 | Download a submission's zip, prediction & scoring output |
+| `codabench show <id|url>`                    | Pages, phases, tasks, files, leaderboard                 |
+| `codabench files <id|url>`                   | List / download the "Files" tab + pages                  |
+| `codabench submit <id|url> -z FILE`          | Upload a submission, optionally wait for the score       |
+| `codabench outputs <id|url>`                 | Download a submission's zip, prediction & scoring output |
 | `codabench rerun --submission ID --task KEY` | Re-run a submission on another task (robot accounts)     |
 | `codabench create -b bundle.zip`             | Create a competition from a bundle                       |
-
 
 Every command takes `--url`, `--username`, `--password`, `--env`, and `--help`.
 
@@ -102,9 +102,10 @@ Add `--no-download` for the text only.
 
 ```bash
 codabench files 16161 --list                 # see what exists first
-codabench files 16161                        # download into files/16161/
+codabench files 16161                        # files + pages/*.md + description.md into files/16161/
 codabench files 16161 --only starting_kit    # filter by type or name
 codabench files 16161 --no-extract           # keep the zips
+codabench files 16161 --no-pages             # skip pages/*.md and description.md
 ```
 
 ### Submit and get scored

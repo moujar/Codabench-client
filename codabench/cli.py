@@ -187,6 +187,10 @@ def cmd_files(args: argparse.Namespace) -> None:
         return
 
     out_dir = Path(args.out_dir) / str(comp.get("id"))
+    if not args.no_pages:
+        for path in save_description(comp, out_dir):
+            print(f"[ok] {path}")
+        print()
     saved = _download_files(client, files, out_dir, extract=not args.no_extract)
     print(f"\n[ok] {saved}/{len(files)} file(s) -> {out_dir}/\n")
 
@@ -354,6 +358,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("-o", "--out-dir", default="files",
                    help="Download into <out-dir>/<competition id>/.")
     p.add_argument("--no-extract", action="store_true", help="Keep archives zipped.")
+    p.add_argument("--no-pages", action="store_true",
+                   help="Skip saving description.md and pages/*.md.")
     p.set_defaults(func=cmd_files)
 
     p = sub.add_parser("submit", parents=[common], help="Submit a zip to a phase.")
